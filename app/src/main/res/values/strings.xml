@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MapsforgeSample</string>
+    <string name="btn_txt_simple_map">Simple Map</string>
+    <string name="btn_txt_multimap">Multi-Map</string>
+    <string name="toast_dir_success">Directory Create Success</string>
+    <string name="toast_dir_fail_retry">Directory create failed, retry...</string>
+    <string name="toast_dir_fail">Directory create failed</string>
+</resources>
