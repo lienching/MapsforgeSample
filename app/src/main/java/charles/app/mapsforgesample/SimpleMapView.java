@@ -49,8 +49,8 @@ public class SimpleMapView extends Activity {
         super.onStart();
         multiMapDataStore.addMapDataStore(worldMap,true,true);
         multiMapDataStore.addMapDataStore(taiwanMap,false,false);
-        multiMapDataStore.setStartPosition(new LatLong(23, 121));
-        multiMapDataStore.setStartZoomLevel((byte) 7);
+        //multiMapDataStore.setStartPosition(new LatLong(23, 121));
+        //multiMapDataStore.setStartZoomLevel((byte) 7);
         tileRendererLayer = new TileRendererLayer(tileCache,multiMapDataStore,mapView.getModel().mapViewPosition,false,true, AndroidGraphicFactory.INSTANCE);
         tileRendererLayer.setXmlRenderTheme(InternalRenderTheme.OSMARENDER);
 

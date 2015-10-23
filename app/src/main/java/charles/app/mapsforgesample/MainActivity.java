@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkMapSource(){
-        boolean task1=false,task2=false;
+        boolean task1,task2;
         task1 = checker.isMapResourceExist("world/world-lowres-0-7.map");
         task2 = checker.isMapResourceExist("asia/taiwan.map");
         if(!task1){
