@@ -29,7 +29,7 @@ public class MapDownloadManager{
         //Set whether this download may proceed over a roaming connection.
         request.setAllowedOverRoaming(false);
         request.setTitle("Mapsforge Map Download");
-        request.setDestinationInExternalPublicDir(external_path+"/mapsforge/maps/",mapfile);
+        request.setDestinationInExternalPublicDir("/mapsforge/maps/",mapfile);
         downloadManager.enqueue(request);
     }
 }

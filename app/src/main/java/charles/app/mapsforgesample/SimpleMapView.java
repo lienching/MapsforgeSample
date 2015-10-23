@@ -28,19 +28,39 @@ public class SimpleMapView extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         mapView = new MapView(this);
-        setContentView(mapView);
+        mapView.setClickable(true);
+        mapView.getMapScaleBar().setVisible(true);
+        mapView.setBuiltInZoomControls(true);
+        mapView.getMapZoomControls().setZoomLevelMin((byte) 10);
+        mapView.getMapZoomControls().setZoomLevelMax((byte) 20);
+
         worldMap = new MapFile(Constant.PATH_WORLDMAP);
         taiwanMap = new MapFile(Constant.PATH_TAIWANMAP);
+        multiMapDataStore = new MultiMapDataStore(MultiMapDataStore.DataPolicy.RETURN_ALL);
+
+        tileCache = AndroidUtil.createTileCache(this, "mapcache", mapView.getModel().displayModel.getTileSize(), 1f, this.mapView.getModel().frameBufferModel.getOverdrawFactor());
+        setContentView(mapView);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         multiMapDataStore.addMapDataStore(worldMap,false,false);
         multiMapDataStore.addMapDataStore(taiwanMap,true,true);
         multiMapDataStore.setStartPosition(new LatLong(23, 121));
-        multiMapDataStore.setStartZoomLevel((byte) 7);
-        tileCache = AndroidUtil.createTileCache(this, "mapcache", mapView.getModel().displayModel.getTileSize(), 1f, this.mapView.getModel().frameBufferModel.getOverdrawFactor());
+        multiMapDataStore.setStartZoomLevel((byte) 10);
         tileRendererLayer = new TileRendererLayer(tileCache,multiMapDataStore,mapView.getModel().mapViewPosition,false,true, AndroidGraphicFactory.INSTANCE);
         tileRendererLayer.setXmlRenderTheme(InternalRenderTheme.OSMARENDER);
-        mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(new LatLong(23, 121), (byte) 1));
+
+        mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(new LatLong(23, 121), (byte) 10));
         mapView.getLayerManager().getLayers().add(tileRendererLayer);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.mapView.destroyAll();
+    }
 }
