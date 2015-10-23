@@ -33,7 +33,7 @@ public class SimpleMapView extends Activity {
         mapView.setClickable(true);
         mapView.getMapScaleBar().setVisible(true);
         mapView.setBuiltInZoomControls(true);
-        mapView.getMapZoomControls().setZoomLevelMin((byte) 10);
+        mapView.getMapZoomControls().setZoomLevelMin((byte) 5);
         mapView.getMapZoomControls().setZoomLevelMax((byte) 20);
 
         worldMap = new MapFile(Constant.PATH_WORLDMAP);
@@ -47,14 +47,14 @@ public class SimpleMapView extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
-        multiMapDataStore.addMapDataStore(worldMap,false,false);
-        multiMapDataStore.addMapDataStore(taiwanMap,true,true);
+        multiMapDataStore.addMapDataStore(worldMap,true,true);
+        multiMapDataStore.addMapDataStore(taiwanMap,false,false);
         multiMapDataStore.setStartPosition(new LatLong(23, 121));
-        multiMapDataStore.setStartZoomLevel((byte) 10);
+        multiMapDataStore.setStartZoomLevel((byte) 7);
         tileRendererLayer = new TileRendererLayer(tileCache,multiMapDataStore,mapView.getModel().mapViewPosition,false,true, AndroidGraphicFactory.INSTANCE);
         tileRendererLayer.setXmlRenderTheme(InternalRenderTheme.OSMARENDER);
 
-        mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(new LatLong(23, 121), (byte) 10));
+        mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(new LatLong(23, 121), (byte) 7));
         mapView.getLayerManager().getLayers().add(tileRendererLayer);
     }
 
