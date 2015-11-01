@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "charles.app.mapsforgesample"
@@ -22,10 +22,11 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.0.1'
-    compile group: 'org.mapsforge', name: 'mapsforge-map', version: '0.5.2'
-    compile 'org.mapsforge:mapsforge-core:0.5.2'
-    compile 'org.mapsforge:mapsforge-map-android:0.5.2'
-    compile 'org.mapsforge:mapsforge-map-reader:0.5.2'
-    compile 'com.caverock:androidsvg:1.2.2-beta-1'
+    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile 'org.mapsforge:mapsforge-map:0.6.0-rc1'
+    compile 'org.mapsforge:mapsforge-core:0.6.0-rc1'
+    compile 'org.mapsforge:mapsforge-map-android:0.6.0-rc1'
+    compile 'org.mapsforge:mapsforge-map-reader:0.6.0-rc1'
+    compile 'org.mapsforge:svg-android:0.4.3'
+
 }

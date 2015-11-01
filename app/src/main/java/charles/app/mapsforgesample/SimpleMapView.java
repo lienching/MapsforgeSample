@@ -8,12 +8,14 @@ import org.mapsforge.core.model.MapPosition;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.android.util.AndroidUtil;
 import org.mapsforge.map.android.view.MapView;
+import org.mapsforge.map.datastore.MapDataStore;
+import org.mapsforge.map.datastore.MultiMapDataStore;
 import org.mapsforge.map.layer.cache.TileCache;
 import org.mapsforge.map.layer.renderer.TileRendererLayer;
-import org.mapsforge.map.reader.MapDataStore;
 import org.mapsforge.map.reader.MapFile;
-import org.mapsforge.map.reader.MultiMapDataStore;
 import org.mapsforge.map.rendertheme.InternalRenderTheme;
+
+import java.io.File;
 
 /**
  * Created by lienching on 10/17/15.
@@ -36,8 +38,8 @@ public class SimpleMapView extends Activity {
         mapView.getMapZoomControls().setZoomLevelMin((byte) 5);
         mapView.getMapZoomControls().setZoomLevelMax((byte) 20);
 
-        worldMap = new MapFile(Constant.PATH_WORLDMAP);
-        taiwanMap = new MapFile(Constant.PATH_TAIWANMAP);
+        worldMap = new MapFile(new File(Constant.PATH_WORLDMAP));
+        taiwanMap = new MapFile(new File(Constant.PATH_TAIWANMAP));
         multiMapDataStore = new MultiMapDataStore(MultiMapDataStore.DataPolicy.RETURN_ALL);
 
         tileCache = AndroidUtil.createTileCache(this, "mapcache", mapView.getModel().displayModel.getTileSize(), 1f, this.mapView.getModel().frameBufferModel.getOverdrawFactor());
